@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SignAvatars: A Large-scale 3D Sign Language Holistic Motion Dataset and Benchmark">
+  <meta name="keywords" content="SMPLX, Sign Language Datasets, Sign Language Production">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignAvatars: A Large-scale 3D Sign Language Holistic Motion Dataset and Benchmark</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- <h4 class="title conference-title is-4">ICLR 2024</h4> -->
+            <h2 class="title is-2 publication-title">
+              SignAvatars: A Large-scale 3D Sign Language Holistic Motion Dataset and Benchmark
+            </h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">Anonymous authors</a><sup>1</sup>
+              </span>
+            </div>
+
+
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data (coming soon)</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://youtu.be/MItf79UhxQY" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h5 class="subtitle is-5">
+        <b>SignAvatars</b> is the first large-scale 3D sign language holistic motion dataset with mesh annotations, which comprises 8.34M precise 3D whole-body SMPL-X annotations,
+          covering 70K motion sequences. The corresponding MANO hand version is also provided.
+
+        </h5>
+        <img src="./static/images/teaser.png" autoplay muted loop playsinline height="100%">
+        <h2 class="subtitle has-text-centered">
+          Figure 1: Figure 1: Overview of SignAvatars, the first public large-scale multi-prompt 3D sign language holistic motion dataset. (upper row) We introduce a generic method to automatically annotate a large corpus of video data. (lower row) We propose the first 3D SLP benchmark to generate plausible 3D holistic mesh motion. 
+        </h2>
+      </div>
+    </div>
+  </section>
+
+<!-- Paper abstract -->
+<!-- <p style="margin-bottom: -1.5cm;"></p> -->
+  <!-- <p style="margin-bottom: -1.5cm;"></p> -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+             In this paper, we present <b style="color: rgb(124, 196, 245);">SignAvatars</b>, the first large-scale multi-prompt 3D sign language (SL) motion dataset designed to bridge the communication gap 
+                for hearing-impaired individuals. While there has been an exponentially growing number of research regarding digital communication, 
+                the majority of existing communication technologies primarily cater to spoken or written languages, instead of SL, 
+                the essential communication method for hearing-impaired communities. 
+                Existing SL datasets, dictionaries, and sign language production (SLP) methods are typically limited to 2D as the annotating 3D models and avatars for SL is 
+                usually an entirely manual and labor-intensive process conducted by SL experts, often resulting in unnatural avatars. In response to these challenges, 
+                we compile and curate the SignAvatars dataset, which comprises 70,000 videos from 153 signers, totaling 8.34 million frames, covering both isolated signs and 
+                continuous, co-articulated signs, with multiple prompts including HamNoSys, spoken language, and words. To yield 3D holistic annotations, 
+                including meshes and biomechanically-valid poses of body, hands, and face, as well as 2D and 3D keypoints, we introduce an automated annotation 
+                pipeline operating on our large corpus of SL videos. SignAvatars facilitates various tasks such as 3D sign language recognition (SLR) and the novel 3D 
+                SL production (SLP) from diverse inputs like text scripts, individual words, and HamNoSys notation. Hence, to evaluate the potential of SignAvatars, 
+                we further propose a unified benchmark of 3D SL holistic motion production. We believe that this work is a significant step forward towards bringing the 
+                digital world to the hearing-impaired communities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- End paper abstract -->
+  
+  <p style="margin-bottom: 1.5cm;"></p>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h3 class="title is-3 has-text-centered">SignAvatars Dataset Modality</h3>
+        <!-- <h3 class="title is-3 has-text-centered">UBody Dataset</h3> -->
+<!--         <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos_v1/overview.mp4" type="video/mp4">
+        </video> -->
+        <img src="./static/images/modality.png" autoplay muted loop playsinline height="100%">
+<!--         <h2 class="subtitle has-text-centered">
+          Figure 2: SMPL-X motion samples from the Motion-X dataset. 
+        </h2> -->
+        <img src="./static/images/modality2.png" autoplay muted loop playsinline height="100%">
+<!--         <h2 class="subtitle has-text-centered">
+        Figure 3: Overview of Motion-X: (a) diverse facial expressions, (b) indoor motion with expressive face and hand motions, 
+        (c) outdoor motion with challenging poses, and (d) several motion sequences. 
+        </h2> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h3 class="title is-3 has-text-centered">Sign Language Motion Annotations</h3>
+         <br>
+          <img src="./static/images/fitting.png" autoplay muted loop playsinline height="100%">
+          <h2 class="subtitle has-text-centered">
+            Figure 3: Illustration of the <b>automatic motion annotation pipeline</b>.  Given an RGB image sequence as input
+for hierarchical initialization, it is followed by optimization with temporal smoothing and biomechanical constraints. Finally, it outputs the final results in a motion sequence of SMPL-X parameters
+          </h2>
+         <br/>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Application -->
+<p style="margin-bottom: -1.5cm;"></p>
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+<!-- 	      <h2 class="title is-3">Applications</h2> -->
+	      <div id="results-carousel" class="carousel results-carousel">
+		<div class="item item-video1">
+		  <video poster="" id="video1" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/multi.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video2">
+		  <video poster="" id="video2" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/single.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Application -->
+
+<!-- Results -->
+<p style="margin-bottom: -1.5cm;"></p>	
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+<!--         <h2 class="title is-3">Visualization of Annotations</h2> -->
+	      <div id="results-carousel" class="carousel results-carousel">
+	       <div class="item">
+		<!-- Your image here -->
+		<img src="static/images/data1.png" alt="MY ALT TEXT"/>
+		<h2 class="subtitle has-text-centered">
+		   Figure 4: <b>More examples of SignAvatars, ASL subset</b>. We have different shapes of annotations presenting the accurate body and hand estimation.
+		</h2>
+	      </div>
+	      <div class="item">
+		<!-- Your image here -->
+		<img src="static/images/data2.png" alt="MY ALT TEXT"/>
+		<h2 class="subtitle has-text-centered">
+		  Figure 5: <b>More examples of SignAvatars, HamNoSys subset</b>. We have different shapes of annotations presenting the accurate body and hand estimation.
+		</h2>   
+	      </div>
+	      <div class="item">
+		<!-- Your image here -->
+		<img src="static/images/data3.png" alt="MY ALT TEXT"/>
+		<h2 class="subtitle has-text-centered">
+		  Figure 6: <b>More examples of SignAvatars, word subset</b>. We have different shapes of annotations presenting the accurate body and hand estimation.
+		</h2>
+	      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End Results -->
+
+  <p style="margin-bottom: 1.5cm;"></p>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h3 class="title is-3 has-text-centered">Application: SignVAE for SLP</h3>
+        <br>
+          <img src="./static/images/method.png" autoplay muted loop playsinline height="100%">
+          <h2 class="subtitle has-text-centered">
+            Figure 7: Overview of our 3D SLP network. 
+    Our method consists of a two-stage process. We first create semantic and motion codebooks using two VQ-VAEs, mapping inputs to their respective code indices. Then, we employ an auto-regressive model to generate motion code indices based on semantic code indices, ensuring a coherent understanding of the data.
+          </h2>
+        <br/>
+      </div>
+    </div>
+  </section>
+
+<!-- Application -->
+<p style="margin-bottom: -1.5cm;"></p>
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+	      <div id="results-carousel" class="carousel results-carousel">
+		<div class="item item-video1">
+		  <video poster="" id="video1" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_1.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video2">
+		  <video poster="" id="video2" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_2.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video3">
+		  <video poster="" id="video3" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_3.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video4">
+		  <video poster="" id="video4" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_4.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video5">
+		  <video poster="" id="video5" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_5.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video6">
+		  <video poster="" id="video6" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/hamnosys_6.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Application -->
+<!-- Application -->
+<p style="margin-bottom: -1.5cm;"></p>
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+	      <div id="results-carousel" class="carousel results-carousel">
+		<div class="item item-video1">
+		  <video poster="" id="video1" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_1.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video2">
+		  <video poster="" id="video2" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_2.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video3">
+		  <video poster="" id="video3" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_3.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video4">
+		  <video poster="" id="video4" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_4.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video5">
+		  <video poster="" id="video5" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_5.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video6">
+		  <video poster="" id="video6" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/word_6.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Application -->
+<!-- Application -->
+<p style="margin-bottom: -1.5cm;"></p>
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+	      <div id="results-carousel" class="carousel results-carousel">
+		<div class="item item-video1">
+		  <video poster="" id="video1" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl1.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video2">
+		  <video poster="" id="video2" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl4.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video3">
+		  <video poster="" id="video3" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl5.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video4">
+		  <video poster="" id="video4" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl2.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video5">
+		  <video poster="" id="video5" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl3.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+		<div class="item item-video6">
+		  <video poster="" id="video6" autoplay controls muted loop height="100%">
+		    <!-- Your video file here -->
+		    <source src="static/videos/asl6.mp4"
+		    type="video/mp4">
+		  </video>
+		</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Application -->
+<!-- Results -->
+<p style="margin-bottom: -1.5cm;"></p>	
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+<!--         <h2 class="title is-3">Visualization of Annotations</h2> -->
+	      <div id="results-carousel" class="carousel results-carousel">
+	       <div class="item">
+		<!-- Your image here -->
+		<img src="static/images/gen.png" alt="MY ALT TEXT"/>
+		<h2 class="subtitle has-text-centered">
+		   Figure 8: Qualitative generation results of 3D SLP from different prompts.
+		</h2>
+	      </div>
+	      <div class="item">
+		<!-- Your image here -->
+		<img src="static/images/gen.png" alt="MY ALT TEXT"/>
+		<h2 class="subtitle has-text-centered">
+		  Figure 9: Qualitative generation results of 3D SLP from different prompts.
+		</h2>   
+	      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+    
+  
+  <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-size-6">
+            <div class="content">
+              <p>
+	       This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+               Commons Attribution-ShareAlike 4.0 International License</a>.
+	       
+	       This page was built using the <a href="https://nerfies.github.io/" target="_blank">Nerfies website</a>.
+	  	</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+  </html>
